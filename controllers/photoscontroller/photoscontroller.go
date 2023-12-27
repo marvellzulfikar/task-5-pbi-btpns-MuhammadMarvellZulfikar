@@ -5,13 +5,14 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/marvellzulfikar/task-5-pbi-btpns-MuhammadMarvellZulfikar/database"
 	"github.com/marvellzulfikar/task-5-pbi-btpns-MuhammadMarvellZulfikar/models"
 )
 
 func Index(c *gin.Context) {
 	var photos []models.Photos
 
-	models.DB.Find(&photos)
+	database.DB.Find(&photos)
 	c.JSON(http.StatusOK, gin.H{"photos": photos})
 }
 
@@ -23,7 +24,7 @@ func Create(c *gin.Context) {
 		return
 	}
 
-	models.DB.Create(&photos)
+	database.DB.Create(&photos)
 	c.JSON(http.StatusOK, gin.H{"photos": photos})
 
 }
@@ -37,7 +38,7 @@ func Update(c *gin.Context) {
 		return
 	}
 
-	if models.DB.Model(&photos).Where("id = ?", id).Updates(&photos).RowsAffected == 0 {
+	if database.DB.Model(&photos).Where("id = ?", id).Updates(&photos).RowsAffected == 0 {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"message": "tidak dapat mengupdate product"})
 		return
 	}
@@ -59,7 +60,7 @@ func Delete(c *gin.Context) {
 	}
 
 	id, _ := input.Id.Int64()
-	if models.DB.Delete(&photos, id).RowsAffected == 0 {
+	if database.DB.Delete(&photos, id).RowsAffected == 0 {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"message": "Tidak dapat menghapus product"})
 		return
 	}

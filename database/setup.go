@@ -1,6 +1,7 @@
-package models
+package database
 
 import (
+	"github.com/marvellzulfikar/task-5-pbi-btpns-MuhammadMarvellZulfikar/models"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -13,7 +14,7 @@ func ConnectDatabase() {
 		panic(err)
 	}
 
-	database.AutoMigrate(&Photos{})
+	database.AutoMigrate(&models.Photos{})
 
 	DB = database
 }
