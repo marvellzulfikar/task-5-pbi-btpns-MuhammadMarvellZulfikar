@@ -9,6 +9,7 @@ import (
 	"github.com/marvellzulfikar/task-5-pbi-btpns-MuhammadMarvellZulfikar/models"
 )
 
+// show data photo
 func Index(c *gin.Context) {
 	var photos []models.Photos
 
@@ -16,6 +17,7 @@ func Index(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"photos": photos})
 }
 
+// tambah data photo
 func Create(c *gin.Context) {
 	var photos models.Photos
 
@@ -29,6 +31,7 @@ func Create(c *gin.Context) {
 
 }
 
+// update data photo
 func Update(c *gin.Context) {
 	var photos models.Photos
 	id := c.Param("id")
@@ -47,6 +50,7 @@ func Update(c *gin.Context) {
 
 }
 
+// hapus data photo
 func Delete(c *gin.Context) {
 	var photos models.Photos
 
